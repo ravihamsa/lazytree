@@ -1,4 +1,5 @@
 (function () {
+    "use strict";
     var window = this;
     var document = window.document;
     var nodeIndex = {};
@@ -16,8 +17,7 @@
                 buildNodeIndex(children[i]);
             }
         }
-    }
-
+    };
 
     var renderTree = function (treeNode, element) {
         var nodeChildren = treeNode.children;
@@ -37,7 +37,7 @@
         }
         treeNode.rendered = true;
         element.appendChild(ul);
-    }
+    };
 
     var getTemplated = function (template, data) {
         var regex = /{[^}]*}/gi;
@@ -65,14 +65,14 @@
             }
         }
         return output.join('');
-    }
+    };
 
     window.lazyTree = function (treeData, rootElement) {
         buildNodeIndex(treeData);
         if (typeof rootElement === 'string') {
             rootElement = document.getElementById(rootElement);
         }
-        renderTree(treeData, rootElement)
+        renderTree(treeData, rootElement);
         $(rootElement).on('click', 'a.expand', function (e) {
             e.preventDefault();
             var target = $(e.target);
@@ -82,8 +82,8 @@
             if (!data.rendered) {
                 renderTree(data, li[0]);
             }
-        })
+        });
 
-    }
+    };
 
-})(window)
+})(window);
