@@ -1,5 +1,6 @@
 (function (window) {
     "use strict";
+
     var document = window.document;
     var nodeIndex = {};
 
@@ -8,7 +9,7 @@
 
     var buildNodeIndex = function (node) {
         nodeIndex[node.id] = node;
-        /*
+
         var children = node.children;
 
         var len = children.length;
@@ -17,11 +18,10 @@
                 buildNodeIndex(children[i]);
             }
         }
-        */
+
     };
 
     var renderTree = function (treeNode, element) {
-        buildNodeIndex(treeNode);
         var nodeChildren = treeNode.children;
         var ul = document.createElement('ul');
         for (var i = 0, len = nodeChildren.length; i < len; i++) {
