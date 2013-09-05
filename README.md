@@ -1,4 +1,4 @@
-lazytree
+Lazy Tree
 ========
 
-lazy tree
+Lazy Tree is a widget which is optimized to render complex tree, It renders child elements only when they are required.

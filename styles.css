@@ -1,0 +1,59 @@
+#container {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ul {
+    margin-left: 10px;
+}
+
+li {
+    list-style: none;
+    padding: 5px;
+}
+
+.closed ul {
+    display: none;
+}
+
+.no-child {
+    padding-left: 20px;
+}
+
+.node-content {
+    line-height: 16px;
+}
+
+.node-content a {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+    font-size: 20px;
+    position: relative;
+    margin-right: 5px;
+}
+
+.node-content a:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: "-";
+    text-align: center;
+}
+
+.closed .node-content a:after {
+    content: "+";
+}
