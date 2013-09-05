@@ -2,12 +2,12 @@
     "use strict";
 
     var document = window.document;
-    var nodeIndex = {};
+
 
     var contentTemplate = "<div class='node-content'><a href='#' class='expand'></a>{name}</div>";
     var noChildTemplate = "<div class='node-content no-child'>{name}</div>";
 
-    var buildNodeIndex = function (node) {
+    var buildNodeIndex = function (node, nodeIndex) {
         nodeIndex[node.id] = node;
 
         var children = node.children;
@@ -15,7 +15,7 @@
         var len = children.length;
         if (len > 0) {
             for (var i = 0; i < len; i++) {
-                buildNodeIndex(children[i]);
+                buildNodeIndex(children[i], nodeIndex);
             }
         }
 
@@ -70,7 +70,8 @@
     };
 
     window.lazyTree = function (treeData, rootElement) {
-        buildNodeIndex(treeData);
+        var nodeIndex = {};
+        buildNodeIndex(treeData, nodeIndex);
         if (typeof rootElement === 'string') {
             rootElement = document.getElementById(rootElement);
         }
