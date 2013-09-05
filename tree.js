@@ -1,6 +1,5 @@
-(function () {
+(function (window) {
     "use strict";
-    var window = this;
     var document = window.document;
     var nodeIndex = {};
 
