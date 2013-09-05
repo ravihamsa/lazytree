@@ -6,12 +6,15 @@
 </head>
 <body>
 
+<div id="helper">
+
+</div>
 
 <div id="container">
 
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="tree.js"></script>
+<script type="text/javascript" src="tree.min.js"></script>
 <script type="text/javascript">
 
     var generateTreeData = function	(root, nodeCount, maxDepth){
@@ -34,6 +37,15 @@
     }
     generateTreeData(treeRoot, 10, 4);
     lazyTree(treeRoot, 'container');
+
+
+    var showLiCount = function(){
+        $('#helper').html('Rendered Node Count: '+ $('li').length);
+        setTimeout(showLiCount, 1000);
+    };
+
+    showLiCount();
+
 </script>
 </body>
 </html>

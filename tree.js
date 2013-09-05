@@ -1,6 +1,6 @@
 (function () {
     var window = this;
-    var document = this.document;
+    var document = window.document;
     var nodeIndex = {};
 
     var contentTemplate = "<div class='node-content'><a href='#' class='expand'></a>{name}</div>";
