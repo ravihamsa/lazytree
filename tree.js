@@ -6,19 +6,22 @@
     var contentTemplate = "<div class='node-content'><a href='#' class='expand'></a>{name}</div>";
     var noChildTemplate = "<div class='node-content no-child'>{name}</div>";
 
-    var buildNodeIndex = function (root) {
-        root.rendered = false;
-        nodeIndex[root.id] = root;
-        var children = root.children;
+    var buildNodeIndex = function (node) {
+        nodeIndex[node.id] = node;
+        /*
+        var children = node.children;
+
         var len = children.length;
         if (len > 0) {
             for (var i = 0; i < len; i++) {
                 buildNodeIndex(children[i]);
             }
         }
+        */
     };
 
     var renderTree = function (treeNode, element) {
+        buildNodeIndex(treeNode);
         var nodeChildren = treeNode.children;
         var ul = document.createElement('ul');
         for (var i = 0, len = nodeChildren.length; i < len; i++) {

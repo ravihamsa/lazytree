@@ -16,6 +16,20 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="tree.min.js"></script>
 <script type="text/javascript">
+    var count = 0;
+    var renderCalled = false;
+    var maxTreeDepth = 3;
+    var maxChildrenPerNode = 50;
+
+    var initiateRendering = function(){
+        lazyTree(treeRoot, 'container');
+        var showLiCount = function(){
+            $('#helper').html('Generated Node Count: '+ count + '  Rendered Node Count: '+ $('li').length);
+            setTimeout(showLiCount, 1000);
+        };
+        showLiCount();
+    }
+
 
     var generateTreeData = function	(root, nodeCount, maxDepth){
         var children = root.children;
@@ -24,10 +38,26 @@
         for(var i=0; i<nodeCount; i++){
             var child = {name:name+'_'+i, id:nodeId+'_'+i,children:[]}
             children.push(child);
+            count++;
+
             if(maxDepth > 0){
-                generateTreeData(child,Math.round(Math.random()*nodeCount), maxDepth-1);
+                (function(child, nodeCount, maxDepth){
+                    setTimeout(function(){
+                        generateTreeData(child,nodeCount, maxDepth-1);
+                    },0)
+                })(child, nodeCount, maxDepth)
             }
         }
+
+
+
+
+        if(!renderCalled && maxDepth === 0){ //data generation is complete
+            renderCalled=true;
+            initiateRendering()
+        }
+
+
     }
 
     var treeRoot = {
@@ -35,16 +65,8 @@
         name:'nodeName',
         children:[]
     }
-    generateTreeData(treeRoot, 10, 4);
-    lazyTree(treeRoot, 'container');
+    generateTreeData(treeRoot, maxChildrenPerNode, maxTreeDepth);
 
-
-    var showLiCount = function(){
-        $('#helper').html('Rendered Node Count: '+ $('li').length);
-        setTimeout(showLiCount, 1000);
-    };
-
-    showLiCount();
 
 </script>
 </body>
